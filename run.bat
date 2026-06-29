@@ -12,15 +12,15 @@ echo   STRUCTURE EXPLANATION
 echo =======================================================
 echo.
 echo   [1] Jenkins Job UI
-echo              |
+echo              ^|
 echo              v
 echo   [2] Job triggers the Jenkinsfile
 echo       (already exists in the jenkins/ folder)
-echo              |
+echo              ^|
 echo              v
 echo   [3] Jenkinsfile clones the GitHub repo
 echo       and runs the Jenkinsfile from inside the repo
-echo              |
+echo              ^|
 echo              v
 echo   [4] Jenkinsfile performs pipeline operations
 echo       (build, test, deploy, etc.)
