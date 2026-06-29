@@ -1,8 +1,4 @@
 def stages(){
-
-    stage("Clean Workspace Before"){
-        cleanWs()
-    }
     
     stage("Introduction"){
         bat'''
@@ -10,9 +6,6 @@ def stages(){
         jenkins-pipeline-demo\\run.bat
         '''
     }
-    
-    
-    
     
     stage("Current path"){
         bat'''
