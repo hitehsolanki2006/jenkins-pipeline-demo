@@ -1,10 +1,13 @@
 def stages(){
+
+    stage("Clean Workspace Before"){
+        cleanWs()
+    }
     
     stage("Introduction"){
         bat'''
-        .\run.bat
-    
-    echo --- Hello from Jenkins file GitHub ---
+        echo --- Hello from Jenkins file GitHub ---
+        jenkins-pipeline-demo\\run.bat
         '''
     }
     
@@ -46,6 +49,10 @@ def stages(){
         echo --> listing file/folder exist in current directory<---
         dir
         '''
+    }
+
+    stage("Clean Workspace After"){
+        cleanWs()
     }
 }
 
