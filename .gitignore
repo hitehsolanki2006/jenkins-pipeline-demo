@@ -1,0 +1,2 @@
+# Exclude local Jenkins configuration file
+jenkinsfile-local
