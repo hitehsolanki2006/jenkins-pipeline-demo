@@ -1,3 +1,6 @@
+# GitHub Actions CD Workflow Configuration
+# Deploys interactive visualizer to GitHub Pages environment
+
 name: Deploy Visualizer to GitHub Pages
 
 on:
