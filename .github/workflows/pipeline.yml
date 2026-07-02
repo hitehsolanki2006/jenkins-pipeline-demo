@@ -1,3 +1,6 @@
+# GitHub Actions CI Workflow Configuration
+# Validates build steps on Windows cloud runner container
+
 name: Jenkins Pipeline Demo (Github actions)
 
 on:
