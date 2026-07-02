@@ -447,9 +447,15 @@ This project is open-source and available for educational purposes.
 
 ---
 
+## 👤 Author
+
+* **Hitesh Solanki** - *Lead DevOps Engineer / Developer* - [Hitesh-Solanki](https://github.com/Hitesh-Solanki)
+
+---
+
 ## 📧 Contact
 
-For questions or feedback, reach out via GitHub issues.
+For questions, collaborations, or feedback, feel free to reach out via GitHub issues or connect directly.
 
 ---
 
