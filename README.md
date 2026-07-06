@@ -34,11 +34,13 @@ It synchronizes execution stages with:
 
 ### 🌐 Live Demo (Netlify)
 
+🚀 **Live Link:** [https://jenkins-pipeline-visualizer.netlify.app/](https://jenkins-pipeline-visualizer.netlify.app/)
+
 The visualizer is configured for continuous deployment to Netlify:
 
 1. **Native Netlify Git Integration (Recommended)**:
    * Connect your GitHub repository to Netlify.
-   * Netlify will read the root [netlify.toml](file:///d:/My%20projects/Jenkins-Projects/jenkins-pipeline-demo/netlify.toml) file, build the deployment package, and publish it automatically on every push to the `main` branch.
+   * Set the **Base Directory** to `visualizer`. Netlify will read the configuration in [netlify.toml](file:///d:/My%20projects/Jenkins-Projects/jenkins-pipeline-demo/visualizer/netlify.toml), and publish the files automatically on every push to the `main` branch.
 
 2. **GitHub Actions Deployment**:
    * A GitHub Actions workflow is provided at [.github/workflows/deploy-netlify.yml](file:///d:/My%20projects/Jenkins-Projects/jenkins-pipeline-demo/.github/workflows/deploy-netlify.yml).
