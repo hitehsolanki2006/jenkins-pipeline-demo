@@ -7,3 +7,6 @@ demo-folder/
 # OS metadata
 .DS_Store
 Thumbs.db
+
+# Netlify build and state folders
+.netlify/
