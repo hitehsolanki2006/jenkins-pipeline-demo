@@ -2,3 +2,5 @@
 
 - Migrated deployment target to Netlify
 
+- Removed outdated screenshots and assets
+
