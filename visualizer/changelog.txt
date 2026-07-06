@@ -6,3 +6,5 @@
 
 - Integrated custom high-tech logo
 
+- Configured sitemap and robots.txt SEO tags
+
