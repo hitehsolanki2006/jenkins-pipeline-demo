@@ -1,0 +1,15 @@
+[build]
+  publish = "."
+
+# Redirect rules to preserve paths if anyone attempts to access /visualizer
+[[redirects]]
+  from = "/visualizer/*"
+  to = "/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/visualizer"
+  to = "/"
+  status = 301
+  force = true
