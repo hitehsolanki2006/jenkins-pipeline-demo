@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="An interactive, animated execution flow visualizer for Jenkins load() pipelines and GitHub Actions workflows. Compare DevOps steps side-by-side.">
     <meta name="keywords" content="Jenkins, GitHub Actions, CI/CD, Pipeline, Visualizer, Automation, DevOps, Flow Chart, Jenkinsfile, Workflow, DevOps Pipeline, DevOps Project, Hitesh Solanki Project, Hitesh Project, Hitesh Solanki DevOps, Hitesh Projects, Hunter Projects, Hunter Project, Interactive Jenkins Pipeline Visualizer, Jenkins file load stages demo, Compare Jenkins and GitHub Actions pipelines, Jenkinsfile dynamic loader visual flow, Hitesh Solanki Jenkins Pipeline Demo, DevOps pipeline execution flowchart, Visual representation of Jenkins workflow, GitHub Actions workflow animator">
+    
+    <!-- OpenGraph Image Indexes -->
+    <meta property="og:image" content="https://jenkins-pipeline-visualizer.netlify.app/hitesh.png">
+    <meta property="og:image:alt" content="Hitesh P. Solanki - DevOps Engineer">
+    <meta property="og:image" content="https://jenkins-pipeline-visualizer.netlify.app/logo.png">
+    <meta property="og:image:alt" content="CI/CD Pipeline Execution Visualizer Logo">
+
+    <!-- Schema.org JSON-LD for Creator and WebPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Pipeline Flow Visualizer",
+      "description": "An interactive, animated execution flow visualizer for Jenkins and GitHub Actions.",
+      "creator": {
+        "@type": "Person",
+        "name": "Hitesh P. Solanki",
+        "image": "https://jenkins-pipeline-visualizer.netlify.app/hitesh.png",
+        "url": "https://hiteshsolanki.in",
+        "telephone": "+919327810431"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://jenkins-pipeline-visualizer.netlify.app/hitesh.png"
+      }
+    }
+    </script>
+    
     <title>Pipeline Flow Visualizer</title>
     <!-- Import Outfit font for UI elements and JetBrains Mono for code/logs -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -896,6 +924,98 @@
                 justify-content: center;
             }
         }
+        /* Profile Modal CSS */
+        .profile-avatar-container {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--jenkins-accent);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            margin-top: 10px;
+            flex-shrink: 0;
+        }
+        .profile-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-speed);
+        }
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+        .profile-quote-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin: 16px 0;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .profile-links-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 90%;
+            margin-bottom: 10px;
+        }
+        .profile-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all var(--transition-speed);
+            border: 1px solid var(--border-color);
+        }
+        .profile-link-btn.website {
+            background-color: rgba(31, 91, 139, 0.2);
+            border-color: var(--jenkins-blue);
+        }
+        .profile-link-btn.website:hover {
+            background-color: var(--jenkins-blue);
+            box-shadow: 0 0 12px rgba(31, 91, 139, 0.4);
+        }
+        .profile-link-btn.github {
+            background-color: rgba(36, 41, 47, 0.2);
+            border-color: var(--border-color);
+        }
+        .profile-link-btn.github:hover {
+            background-color: var(--github-gray);
+            border-color: var(--text-secondary);
+            box-shadow: 0 0 12px rgba(36, 41, 47, 0.4);
+        }
+        .profile-link-btn.phone {
+            background-color: rgba(16, 185, 129, 0.15);
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+        .profile-link-btn.phone:hover {
+            background-color: var(--success-color);
+            color: white;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+        .developer-btn {
+            border-color: var(--jenkins-accent) !important;
+            color: var(--jenkins-accent) !important;
+            background-color: rgba(56, 189, 248, 0.1) !important;
+        }
+        .developer-btn:hover {
+            background-color: var(--jenkins-accent) !important;
+            color: var(--bg-primary) !important;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -923,6 +1043,11 @@
             <!-- Scaling Guide Trigger -->
             <button class="tab-btn scaling-btn" onclick="openScalingGuide()">
                 🚀 Enterprise Scaling
+            </button>
+            
+            <!-- Developer Profile Trigger -->
+            <button class="tab-btn developer-btn" onclick="openDeveloperModal()">
+                👤 Hitesh P. Solanki
             </button>
         </div>
     </header>
@@ -1092,6 +1217,46 @@
                     <li><strong>Manual Gates:</strong> Use interactive pipeline steps (<code>input</code> stage) to pause for manual approval before staging or prod.</li>
                     <li><strong>GitOps Sync:</strong> The build runner pushes containers to a Registry and modifies a config file in a Git repo. An in-cluster operator (like ArgoCD) automatically detects the edit and reconciles cluster state.</li>
                 </ul>
+            </div>
+    <!-- Developer Profile Modal -->
+    <div class="modal-overlay" id="developer-modal" onclick="closeDeveloperModal(event)">
+        <div class="modal-container" style="max-width: 480px;" onclick="event.stopPropagation()">
+            <div class="modal-header" style="border-bottom: none;">
+                <div class="modal-title">👤 Developer Profile</div>
+                <button class="modal-close" onclick="closeDeveloperModal(event)">&times;</button>
+            </div>
+            <div class="modal-body" style="padding-top: 0; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <div class="profile-avatar-container">
+                    <img src="hitesh.png" alt="Hitesh P. Solanki" class="profile-avatar">
+                </div>
+                
+                <h2 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-top: 14px;">Hitesh P. Solanki</h2>
+                <p style="font-size: 12px; color: var(--jenkins-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">DevOps & Cloud Automation Engineer</p>
+                
+                <div class="profile-quote-card">
+                    <span style="font-size: 24px; color: var(--border-color); font-family: Georgia, serif; line-height: 0; vertical-align: bottom;">“</span>
+                    <p style="display: inline; font-style: italic; color: #cbd5e1; font-size: 13.5px;">
+                        Building reliable, secure, and highly scalable CI/CD pipelines to bridge the gap between development and operations.
+                    </p>
+                    <span style="font-size: 24px; color: var(--border-color); font-family: Georgia, serif; line-height: 0; vertical-align: top;">”</span>
+                </div>
+                
+                <div class="profile-links-vertical">
+                    <a href="https://hiteshsolanki.in" target="_blank" class="profile-link-btn website">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        hiteshsolanki.in
+                    </a>
+                    
+                    <a href="https://github.com/hitehsolanki2006" target="_blank" class="profile-link-btn github">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        GitHub Profile
+                    </a>
+                    
+                    <a href="tel:+919327810431" class="profile-link-btn phone">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Call: +91 9327810431
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -1942,12 +2107,33 @@
             }, 300);
         }
 
+        // Developer Profile Modal Functions
+        function openDeveloperModal() {
+            if (isPlaying) {
+                togglePlay();
+            }
+            const modal = document.getElementById('developer-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeDeveloperModal() {
+            const modal = document.getElementById('developer-modal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
         // Esc key listener globally
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
                 closeScalingModal();
                 closeZoomModal();
+                closeDeveloperModal();
             }
         });
     </script>
