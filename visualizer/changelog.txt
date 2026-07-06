@@ -1,2 +1,4 @@
 ﻿Changelog for Jenkins Pipeline Visualizer
 
+- Migrated deployment target to Netlify
+
