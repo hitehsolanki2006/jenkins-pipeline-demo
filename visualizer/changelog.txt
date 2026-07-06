@@ -4,3 +4,5 @@
 
 - Removed outdated screenshots and assets
 
+- Integrated custom high-tech logo
+
