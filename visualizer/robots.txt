@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jenkins-pipeline-visualizer.netlify.app/sitemap.xml
