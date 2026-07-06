@@ -1,10 +1,2 @@
 ﻿Changelog for Jenkins Pipeline Visualizer
 
-- Migrated deployment target to Netlify
-
-- Removed outdated screenshots and assets
-
-- Integrated custom high-tech logo
-
-- Configured sitemap and robots.txt SEO tags
-
